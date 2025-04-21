@@ -1,6 +1,6 @@
 # Digital image signing with RSA in Python. Cybersecurity final project
 
-I this project I implemented a simple and effective way to digitally sign and verify PNG images using RSA-4096 cryptography. The digital signature is embedded invisibly** into the image metadata. Also, the full quality and visual appearence of the image remain the same after signature.
+I this project I implemented a simple and effective way to digitally sign and verify PNG images using RSA-4096 cryptography. The digital signature is embedded invisibly into the image metadata. Also, the full quality and visual appearence of the image remain the same after signature.
 
 ---
 
