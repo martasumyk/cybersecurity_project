@@ -1,10 +1,9 @@
 import subprocess
 import os
 
-# Set the path to your OpenSSL executable
-OPENSSL_PATH = r"C:\Program Files\OpenSSL-Win64\bin\openssl.exe"
 
-# Check if OpenSSL exists at the given path
+OPENSSL_PATH = r"C:\Program Files\OpenSSL-Win64\bin\openssl.exe" # path to your installed OpenSSL (can be copied during installation)
+
 if not os.path.exists(OPENSSL_PATH):
     print(f"[!] OpenSSL not found at {OPENSSL_PATH}")
     print("[!] Please ensure OpenSSL is installed and the path is correct.")
@@ -12,7 +11,7 @@ if not os.path.exists(OPENSSL_PATH):
 
 def generate_rsa_keys(private_key_path="private_key.pem", public_key_path="public_key.pem", key_size=4096):
     try:
-        # Generate private key
+        # for private key
         subprocess.run([
             OPENSSL_PATH, "genpkey",
             "-algorithm", "RSA",
@@ -22,7 +21,7 @@ def generate_rsa_keys(private_key_path="private_key.pem", public_key_path="publi
 
         print(f"[+] Private key saved to: {private_key_path}")
 
-        # Extract public key
+        # for public key
         subprocess.run([
             OPENSSL_PATH, "rsa",
             "-pubout",
