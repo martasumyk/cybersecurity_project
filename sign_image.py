@@ -26,13 +26,13 @@ def sign_image(image_path, private_key_path, output_path):
 
     img.save(output_path, "PNG", pnginfo=meta)
 
-    print(f"[+] Image signed and saved as {output_path}")
+    print(f"Image signed and saved in {output_path}")
 
 
 
 if __name__ == "__main__":
     sign_image(
-        image_path="dog.png",
+        image_path="./dog.png",
         private_key_path="private_key.pem",
-        output_path="signed_image.png"
+        output_path="./signed_image.png"
     )
