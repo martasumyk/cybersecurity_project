@@ -1,50 +1,65 @@
 # Digital image signing with RSA in Python. Cybersecurity final project
 
-In this project I implemented a simple and effective way to digitally sign and verify PNG images using RSA-4096 cryptography. The digital signature is embedded invisibly into the image metadata. Also, the full quality and visual appearence of the image remain the same after signature.
+У цьому проєкті я реалізувала ефективний спосіб цифрового підписування та перевірки PNG-зображень за допомогою криптографії RSA-4096. Цифровий підпис непомітно вбудовується у метадані зображення. Якість і вигляд зображення залишаються незмінними у порівнянні з початковим, як і зазначено в завданні.
+
 
 ---
 
-## Project steps
+## Кроки проєкту
 
-- Generate a 4096-bit RSA key pair  
-- Digitally sign an image using the private RSA key  
-- Embed the signature in the image metadata (`TEXT` chunk in PNG)  
-- Verify the image using the public RSA key  
-- Keep the image visually unchanged and openable in standard viewers
+- Генерація пари ключів RSA на 4096 біт
+- Цифрове підписування зображення за допомогою приватного ключа RSA 
+- Вбудовування підпису в метадані зображення 
+- Перевірка зображення за допомогою публічного ключа RSA 
+- Зображення залишається візуально незмінним та відкривається у стандартних переглядачах
 
----
 
-## Potential Applications
-
-Ponential business applications include:
-
-- Watermarking and authenticity verification of digital images
-- Secure document or certificate distribution
-- Tamper detection for sensitive media
-- Copyright and intellectual property protection
 
 ---
 
-## Approach
+## Потенційне використання
 
-1. Key Generation:
-   - I used OpenSSL to generate `private_key.pem` and `public_key.pem` (4096-bit RSA)
+Можливі бізнес-застосування включають:
 
-2. Image signing:
-   - Uses `Pillow` to load the image
-   - Hashes the raw pixel data (not metadata, it is crucial because at first I was hashing metadata and it was incorrect)
-   - Signs the hash using `pycryptodome` and embeds the signature into the PNG metadata (`Signature` field)
+- Водяні знаки та перевірка автентичності цифрових зображень
 
-3. Image verification:
-   - Loads the image and reads the `Signature` from metadata
-   - Recalculates the hash from raw pixel data
-   - Verifies the signature using the public key
+- Безпечне розповсюдження документів або сертифікатів
+
+- Виявлення змін у чутливих медіафайлах
+
+- Захист авторських прав та інтелектуальної власності на різні зображення
 
 ---
 
-## Installing dependencies
+## Підхід
 
-Install all the needed libraries using pip:
+Ось основні кроки реалізовані у проєкті:
+
+1. Генерація ключів:
+
+- Я використовувала OpenSSL для генерації private_key.pem і public_key.pem (RSA 4096 біт)
+
+2. Підписування зображення:
+
+- Застосовується бібліотека Pillow для завантаження зображення
+
+- Хешується лише піксельна інформація (не метадані — це важливо, бо спочатку я хешувала метадані, і це було помилкою)
+
+- Підпис хешу здійснюється за допомогою pycryptodome, після чого підпис додається до метаданих PNG (поле Signature)
+
+3. Перевірка зображення:
+
+- Завантажується зображення та зчитується підпис з метаданих
+
+- Повторно обчислюється хеш піксельних даних
+
+- Підпис перевіряється за допомогою публічного ключа
+
+---
+
+## Встановлення бібліотек
+
+Встановити всі потрібні для запуску бібліотеки можна через pip, а саме:
 
 ```bash
 pip install -r requirements.txt
